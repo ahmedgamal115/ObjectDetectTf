@@ -1,5 +1,6 @@
 import { useState,useEffect,useRef } from "react";
 import '@tensorflow/tfjs-backend-webgl';
+import './App.css'
 const mobilenet = require('@tensorflow-models/mobilenet');
 
 function App() {
@@ -51,17 +52,19 @@ function App() {
     <div className="App">
       <div className="header"><h1>Image Detection</h1></div>
       <div className="inputContiner">
-        <input type="file" accept="image/*" capture="camera" className="inputImage" onChange={uplaodImage}/>
+        <input type="file" accept="image/*" capture="camera" className="custom-file-input" onChange={uplaodImage}/>
       </div>
 
       <div className="mainWrapper">
         <div className="mainContent">
           <div className="imageHolder">
-            {ImageURL && <img className="previewImage" src={ImageURL} alt="Preview" crossOrigin="anonymous" ref={imageRef}/>}
+            <div className="divStyle">
+              {ImageURL && <img className="previewImage" src={ImageURL} alt="Preview" crossOrigin="anonymous" ref={imageRef}/>}
+            </div>
           </div>
         </div>
       </div>
-      {ImageURL && <button className="mainButton" onClick={identify}>Identify Button</button>}
+      {ImageURL && <button className="glow-on-hover" onClick={identify}>Identify Button</button>}
       {result.length > 0 && <div className="result">
         {
           result.map((results,index)=>{
